@@ -9,6 +9,14 @@ const testJwtRouter = require("./controllers/test-jwt")
 const authRoutes = require("./controllers/auth.routes")
 const verifyToken = require("./middleware/verify-token")
 
+const userRoutes = require("./controllers/user");
+const companyRoutes = require("./controllers/company");
+const workerRoutes = require("./controllers/worker");
+const materialRoutes = require("./controllers/material");
+const collectionRoutes = require("./controllers/collection");
+const achievementRoutes = require("./controllers/achievements");
+
+
 mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on('connected', () => {
@@ -23,6 +31,18 @@ app.use(logger('dev'));
 app.use("/auth",authRoutes)
 
 app.use("/test-jwt",verifyToken,testJwtRouter)
+
+app.use("/users", userRoutes);
+
+app.use("/companies", companyRoutes);
+
+app.use("/workers", workerRoutes);
+
+app.use("/materials", materialRoutes);
+
+app.use("/collections", collectionRoutes);
+
+app.use("/achievements", achievementRoutes);
 
 
 

@@ -11,8 +11,9 @@ const userSchema = new Schema({
     hashedPassword:{
         type:String,
         required:[true,"Password is Required"]
-    }
-})
+    },
+    
+}, {timestamps: true})
 
 const User = model("User",userSchema)
 
