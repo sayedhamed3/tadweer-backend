@@ -30,6 +30,9 @@ const materialSchema = new Schema({
         co2SavedPerUnit : Number, // in kg
         waterSavedPerUnit : Number, // in liters
         energySavedPerUnit : Number, // in kWh
+        treesSavedPerUnit : Number, // in number of trees
+        landfillSpaceSavedPerUnit : Number, // in cubic meters
+        oilSavedPerUnit : Number, // in liters
 
     },
     description: {
