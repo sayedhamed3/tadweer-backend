@@ -13,7 +13,7 @@ const materialSchema = new Schema({
     type: {
         type: String,
         required: true,
-        enum: ["plastic", "paper", "metal", "glass", "electronic", "organic", "hazardous", "other"]
+        enum: ["plastic", "paper", "metal", "glass", "electronic", "organic"]
     },
     unit: {
         type: String,
