@@ -85,10 +85,10 @@ const companySchema = new Schema({
         }
     ],
 
-    collectionHistory: [{
-        collectionID: {
+    disposalHistory: [{
+        disposalID: {
             type: Schema.Types.ObjectId,
-            ref: "Collection",
+            ref: "Disposal",
             required: true
         },
         date: {
@@ -101,7 +101,7 @@ const companySchema = new Schema({
         required: true,
     }],
     stats: {
-        totalCollections: {
+        totalDisposals: {
             type: Number,
             default: 0 
         },
