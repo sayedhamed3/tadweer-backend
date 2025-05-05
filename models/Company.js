@@ -42,7 +42,7 @@ const addressSchema = new Schema({
 
 const companySchema = new Schema({
 
-    user: {
+    userId: {
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true
@@ -59,7 +59,7 @@ const companySchema = new Schema({
         type: String,
         required: true,
     },
-    contactNumber: {
+    phone: {
         type: String,
         required: true,
         unique: true,

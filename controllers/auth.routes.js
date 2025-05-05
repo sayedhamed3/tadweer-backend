@@ -1,4 +1,6 @@
 const User = require("../models/User")
+const Worker = require("../models/Worker")
+const Company = require("../models/Company")
 
 const router = require("express").Router()
 const bcrypt = require("bcrypt")
@@ -14,13 +16,36 @@ router.post("/sign-up",async(req,res)=>{
         }
         const createdUser = await User.create({
             username:req.body.username,
-            hashedPassword: bcrypt.hashSync(req.body.password,12)
+            hashedPassword: bcrypt.hashSync(req.body.password,12),
+            role: req.body.role,
         })
         console.log(createdUser)
 
 
         const convertedObject = createdUser.toObject()
         delete convertedObject.hashedPassword
+
+        // Check User role and make new Worker / Company
+
+        if (req.body.role === "Worker") {
+            createdWorker = await Worker.create({
+                userId: createdUser._id,
+                name: req.body.name,
+                phone: req.body.phone,
+            })
+        } else if (req.body.role === "Company") {
+            createdCompany = await Company.create({
+                userId: createdUser._id,
+                name: req.body.name,
+                phone: req.body.phone,
+                profileImage: req.body.profileImage,
+            })
+        }
+
+
+
+
+
         res.json(convertedObject)
 
     }

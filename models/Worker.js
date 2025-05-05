@@ -13,7 +13,7 @@ const workerSchema = new Schema({
         trim: true,
         text: true
     },
-    phoneNumber: {
+    phone: {
         type: String,
         required: true,
         unique: true,
