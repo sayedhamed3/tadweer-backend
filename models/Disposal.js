@@ -9,7 +9,6 @@ const disposalSchema = new Schema({
     worker: {
         type: Schema.Types.ObjectId,
         ref: "Worker",
-        required: true
     },
     disposalDate: {
         type: Date,

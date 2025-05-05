@@ -13,10 +13,12 @@ const workerSchema = new Schema({
         trim: true,
         text: true
     },
-    currentLocation: {
-        lat: Number,
-        lng: Number
-    },
+    phoneNumber: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
+    }
 })
 
 const Worker = model("Worker", workerSchema)
