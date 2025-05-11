@@ -1,7 +1,7 @@
 const {Schema, model} = require("mongoose")
 
 const workerSchema = new Schema({
-    user: {
+    userId: {
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true
@@ -9,14 +9,11 @@ const workerSchema = new Schema({
     name: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
-        text: true
     },
     phone: {
         type: String,
         required: true,
-        unique: true,
         trim: true
     }
 })

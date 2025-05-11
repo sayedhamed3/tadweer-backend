@@ -16,6 +16,7 @@ const materialRoutes = require("./controllers/materials");
 const disposalRoutes = require("./controllers/disposals");
 const achievementRoutes = require("./controllers/achievements");
 
+require("./utils/disposalScheduler")
 
 mongoose.connect(process.env.MONGODB_URI);
 

@@ -14,6 +14,10 @@ const disposalSchema = new Schema({
         type: Date,
         required: true
     },
+    addressName:{
+        type: String,
+        required: true,
+    },
     status: {
         type: String,
         enum: ["Pending", "Accepted", "Rejected", "Completed"," Cancelled"],
@@ -21,7 +25,13 @@ const disposalSchema = new Schema({
     },
     rejectionMessage: {
         type: String,
-        default: ""
+        default: "",
+        validate: {
+            validator: function(value) {
+                return this.status !== "Rejected" || value.trim() !== "";
+            },
+            message: "Rejection message is required if status is 'Rejected'."
+        }
     },
     materials: [
         {
@@ -45,6 +55,12 @@ const disposalSchema = new Schema({
         default: 0
     },
 }, {timestamps: true})
+
+disposalSchema.pre('save', function(next) {
+    this.totalPrice = this.materials.reduce((acc, material) => acc + material.calculatedPrice, 0);
+    next();
+});
+
 
 const Disposal = model("Disposal", disposalSchema)
 

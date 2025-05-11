@@ -50,9 +50,7 @@ const companySchema = new Schema({
     name: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
-        text: true
     },
 
     profileImage: {
@@ -62,9 +60,7 @@ const companySchema = new Schema({
     phone: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
-        text: true
     },
 
     pickUpSchedule:[
@@ -78,8 +74,8 @@ const companySchema = new Schema({
                 type: String,
                 required: true
             },
-            address: {
-                type: addressSchema,
+            addressName: {
+                type: String,
                 required: true
             },
         }
@@ -130,16 +126,20 @@ const companySchema = new Schema({
             default: 0   // Total oil saved for all materials
         },
         materialStats: {
-            type: Map,
-            of: {
-                totalQuantitySaved: {
-                    type: Number, // The total quantity recycled for this material
-                    default: 0
-                }
-            },
-            default: {}
+            plastic: { totalQuantitySaved: { type: Number, default: 0 } },
+            paper: { totalQuantitySaved: { type: Number, default: 0 } },
+            metal: { totalQuantitySaved: { type: Number, default: 0 } },
+            glass: { totalQuantitySaved: { type: Number, default: 0 } },
+            electronic: { totalQuantitySaved: { type: Number, default: 0 } },
+            organic: { totalQuantitySaved: { type: Number, default: 0 } },
         }
     },
+     achievements: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Achievement",
+            }
+        ]
 })
 
 const Company = model("Company", companySchema)

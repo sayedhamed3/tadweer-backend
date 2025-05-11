@@ -7,8 +7,6 @@ const materialSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        trim: true,
-        text: true
     },
     type: {
         type: String,
@@ -27,12 +25,12 @@ const materialSchema = new Schema({
         default: 1
     },
     environmentalImpact: {
-        co2SavedPerUnit : Number, // in kg
-        waterSavedPerUnit : Number, // in liters
-        energySavedPerUnit : Number, // in kWh
-        treesSavedPerUnit : Number, // in number of trees
-        landfillSpaceSavedPerUnit : Number, // in cubic meters
-        oilSavedPerUnit : Number, // in liters
+        co2SavedPerUnit : {type: Number, default: 0}, // in kg
+        waterSavedPerUnit : {type: Number, default: 0}, // in liters
+        energySavedPerUnit : {type: Number, default: 0}, // in kWh
+        treesSavedPerUnit : {type: Number, default: 0}, // in number of trees
+        landfillSpaceSavedPerUnit : {type: Number, default: 0}, // in cubic meters
+        oilSavedPerUnit : {type: Number, default: 0}, // in liters
 
     },
     description: {
