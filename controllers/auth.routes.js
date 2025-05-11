@@ -127,9 +127,21 @@ router.post("/login", async(req,res)=>{
         const payload = foundUser.toObject()
         delete payload.hashedPassword
 
+         // If the user is a worker or a company, we need to populate the user with the worker or company details
+        if (foundUser.role === "Worker") {
+            const worker = await Worker.findOne({ userId: foundUser._id })
+            payload.workerId = worker._id
+        } else if (foundUser.role === "Company") {
+            const company = await Company.findOne({ userId: foundUser._id })
+            payload.companyId = company._id
+        }
+        
+
         // sign(payload, secret password, expirastion time)
         const token = jwt.sign({payload},process.env.JWT_SECRET,{expiresIn:"30m"})
 
+
+       
         res.status(200).json({token})
 
     }catch(error){
