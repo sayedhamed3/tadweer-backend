@@ -17,6 +17,7 @@ router.get("/", verifyToken, async (req, res) => {
 // Get a Company by Id
 router.get("/:id", verifyToken, async (req, res) => {
     try {
+        console.log(req.params.id)
         const company = await Company.findById(req.params.id).populate("userId", "-hashedPassword -__v");
         if (!company) {
             return res.status(404).json({ err: "Company not found" });

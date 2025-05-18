@@ -5,8 +5,6 @@ const achievementSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-    trim: true,
-    text: true,
   },
   description: {
     type: String,
