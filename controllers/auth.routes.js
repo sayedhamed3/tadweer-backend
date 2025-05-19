@@ -142,7 +142,7 @@ router.post("/login", async(req,res)=>{
 
 
        
-        res.status(200).json({token})
+        res.status(200).json({token, userId: foundUser._id, role: foundUser.role})
 
     }catch(error){
         res.status(500).json(error)

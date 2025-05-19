@@ -82,7 +82,7 @@ router.put("/:id/update-address/:addressId", verifyToken, async (req, res) => {
 // Remove address from Company addresses List by Id using address.name
 router.put("/:id/remove-address", verifyToken, async (req, res) => {
     try {
-        const company = await Company.findByIdAndUpdate(req.params.id, { $pull: { addresses: { name: req.body.name } } }, { new: true }).populate("userId", "-hashedPassword -__v");
+        const company = await Company.findByIdAndUpdate(req.params.id, { $pull: { addresses: { _id: req.body.addressId } } }, { new: true }).populate("userId", "-hashedPassword -__v");
         if (!company) {
             return res.status(404).json({ err: "Company not found" });
         }
