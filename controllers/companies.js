@@ -53,6 +53,32 @@ router.put("/:id/add-address", verifyToken, async (req, res) => {
     }
 })
 
+//update addrses
+router.put("/:id/update-address/:addressId", verifyToken, async (req, res) => {
+    try {
+        const company = await Company.findById(req.params.id)
+
+        const updatedAddress = company.addresses.id(req.params.addressId);
+
+
+        if (updatedAddress) {
+            Object.assign(updatedAddress, req.body);
+            await company.save();
+        }
+        if (!company) {
+            return res.status(404).json({ err: "Company not found" });
+        }
+        if(!updatedAddress) {
+            return res.status(404).json({ err: "Address not found" });
+        }
+
+
+        res.json(company);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+})
+
 // Remove address from Company addresses List by Id using address.name
 router.put("/:id/remove-address", verifyToken, async (req, res) => {
     try {

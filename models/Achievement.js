@@ -4,9 +4,7 @@ const achievementSchema = new Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
-    trim: true,
-    text: true,
+    unique: true
   },
   description: {
     type: String,
