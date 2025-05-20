@@ -80,22 +80,7 @@ router.get("/worker/:workerId", verifyToken, async (req, res) => {
             return res.status(404).json({ err: "Disposal not found" });
         }
 
-        const disposalsWithLocation = disposals.map(disposalDoc => {
-            const disposal = disposalDoc.toObject(); // convert to plain object
-
-            const companyAddresses = disposal.company.addresses;
-
-            const matchingAddress = companyAddresses.find(
-                address => address.name === disposal.addressName
-            );
-
-            if (matchingAddress) {
-                disposal.location = matchingAddress;
-            }
-
-            return disposal;
-        });
-        res.json(disposalsWithLocation);
+        res.json(disposals);
     } catch (error) {
          res.status(500).json({error: error.message});
     }
