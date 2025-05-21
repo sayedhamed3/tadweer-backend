@@ -138,7 +138,7 @@ router.post("/login", async(req,res)=>{
         
 
         // sign(payload, secret password, expirastion time)
-        const token = jwt.sign({payload},process.env.JWT_SECRET,{expiresIn:"30m"})
+        const token = jwt.sign({payload},process.env.JWT_SECRET,{expiresIn:"60m"})
 
 
        

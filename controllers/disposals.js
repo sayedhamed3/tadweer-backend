@@ -53,7 +53,7 @@ router.get("/pending", verifyToken, async (req, res) => {
 // Get disposal by Id
 router.get("/:id", verifyToken, async (req, res) => {
     try {
-        const disposal = await Disposal.findById(req.params.id).populate("worker").populate("company").populate("materials.material")
+        const disposal = await Disposal.findById(req.params.id).populate("worker").populate("company")
         if (!disposal) {
             return res.status(404).json({ err: "Disposal not found" });
         }
