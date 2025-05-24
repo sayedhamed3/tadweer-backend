@@ -12,6 +12,17 @@ const userSchema = new Schema({
         type:String,
         required:[true,"Password is Required"]
     },
+    role:{
+        type:String,
+        enum:["Company","Worker"],
+        default:"Company"
+    },
+    status:{
+        type:String,
+        enum:["Active","Deleted"],
+        default:"Active",
+        required:true
+    },
     
 }, {timestamps: true})
 

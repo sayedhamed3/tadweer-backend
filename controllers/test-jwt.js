@@ -3,6 +3,11 @@ const jwt = require("jsonwebtoken")
 const verifyToken = require("../middleware/verify-token")
 
 
+router.get("/",(req,res)=>{
+    res.json({message:"Hello from test-jwt"})
+}
+
+)
 router.get("/checkout",verifyToken,(req,res)=>{
 
     res.json({message:"You are checked out"})
